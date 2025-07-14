@@ -180,7 +180,103 @@
     margin-top: 16px;
   }
 </style>
+<!-- Tombol Scroll to Top -->
+<button onclick="scrollToTop()" id="scrollBtn" title="Kembali ke Atas">
+  ↑
+</button>
+
+<script>
+  // Tampilkan tombol saat scroll
+  window.onscroll = function() {
+    document.getElementById("scrollBtn").style.display =
+      window.scrollY > 300 ? "block" : "none";
+  };
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+<style>
+  #scrollBtn {
+    display: none;
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    z-index: 100;
+    font-size: 20px;
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    padding: 12px 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    cursor: pointer;
+  }
+
+  #scrollBtn:hover {
+    background-color: #ffaa00;
+  }
+</style>
+<script>
+function copyDana() {
+  navigator.clipboard.writeText("085712594787");
+  alert("Nomor DANA berhasil disalin!");
+}
+</script>
+<script>
+window.addEventListener('load', function () {
+  const produk = document.querySelectorAll('.produk');
+  const totalElem = document.getElementById('total');
+
+  function formatRupiah(angka) {
+    return angka.toLocaleString('id-ID');
+  }
+
+  function updateTotal() {
+    let total = 0;
+    produk.forEach(p => {
+      if (p.checked) {
+        total += parseInt(p.dataset.harga);
+      }
+    });
+    totalElem.textContent = formatRupiah(total);
+  }
+
+  produk.forEach(p => {
+    p.addEventListener('change', updateTotal);
+  });
+
+  window.checkoutWA = function () {
+    let total = 0;
+    let daftar = [];
+
+    produk.forEach(p => {
+      if (p.checked) {
+        const nama = p.value;
+        const harga = parseInt(p.dataset.harga);
+        total += harga;
+        daftar.push(`- ${nama} (Rp ${formatRupiah(harga)})`);
+      }
+    });
+
+    if (daftar.length === 0) {
+      alert("Pilih minimal 1 produk terlebih dahulu.");
+      return;
+    }
+
+    const pesan = `Halo Admin, saya ingin order:\n\n${daftar.join('\n')}\n\nTotal: Rp ${formatRupiah(total)}`;
+    const linkWA = `https://wa.me/6283824724985?text=${encodeURIComponent(pesan)}`;
+    window.open(linkWA, '_blank');
+  };
+});
+</script>
 <body>
+  <!-- Tombol Dark Mode Sederhana -->
+  <button onclick="toggleDarkMode()" id="darkModeBtn"
+    style="position: fixed; top: 20px; right: 20px; padding: 8px 12px; background: #ffcc00; color: #000; border: none; border-radius: 8px; font-weight: bold; z-index: 100;">
+    🌙 Mode Gelap
+  </button>
 
   <!-- Background Video -->
   <video class="bg-video" autoplay muted loop playsinline>
@@ -404,13 +500,86 @@
   </ul>
 </div>
 
+</div> <!-- penutup produk -->
+
+<!-- 🛒 Form Checkout -->
+<h2>🛒 Pilih Produk untuk Checkout</h2>
+<form id="cartForm">
+<!-- 🛒 Checkout Form Otomatis dengan Semua Produk --><h2>🛒 Pilih Produk yang Ingin Kamu Checkout</h2>
+<form id="cartForm">
+  <label><input type="checkbox" class="produk" value="PT PRIBADI PANEL" data-harga="20000"> PT PRIBADI PANEL - Rp 20.000</label><br>
+  <label><input type="checkbox" class="produk" value="PT BIASA" data-harga="15000"> PT BIASA - Rp 15.000</label><br>
+  <label><input type="checkbox" class="produk" value="OWN PANEL" data-harga="13000"> OWN PANEL - Rp 13.000</label><br>
+  <label><input type="checkbox" class="produk" value="ADP" data-harga="8000"> ADP - Rp 8.000</label><br>
+  <label><input type="checkbox" class="produk" value="RESELER" data-harga="4000"> RESELER - Rp 4.000</label><br>
+  <label><input type="checkbox" class="produk" value="MUR SC" data-harga="4000"> PT PRIBADI PANEL - Rp 4.000</label><br>
+  <label><input type="checkbox" class="produk" value="APK KEBUTUHAN JB" data-harga="1000"> APK KEBUTUHAN GB - Rp 1.000</label><br>
+  <label><input type="checkbox" class="produk" value="LOGO TESTIMONI" data-harga="2000"> LOGO TESTIMONI- - Rp 2.000</label><br>
+  <label><input type="checkbox" class="produk" value="LOGO 1" data-harga="2000"> LOGO1 - Rp 2.000</label><br>
+  <label><input type="checkbox" class="produk" value="LOGO 2" data-harga="2000"> LOGO2 - Rp 2.000</label><br>
+  <label><input type="checkbox" class="produk" value="LOGO 3" data-harga="2000"> LOGO3 - Rp 2.000</label><br>
+  <label><input type="checkbox" class="produk" value="LOGO TESTIMONI" data-harga="8000"> OWNER BUG - Rp 8.000</label><br>
+  <label><input type="checkbox" class="produk" value="MURBUG" data-harga="5000"> MURBUG - Rp 5.000</label><br>
+  <label><input type="checkbox" class="produk" value="JASBUG PER NOMOR" data-harga="1000"> JASBUG - Rp 1.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 1GB" data-harga="1000"> LIST PANEL - 1GB - Rp 1.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 2GB" data-harga="2000"> LIST PANEL - 2GB - Rp 2.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 3GB" data-harga="3000"> LIST PANEL - 3GB - Rp 3.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 4GB" data-harga="4000"> LIST PANEL - 4GB - Rp 4.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 5GB" data-harga="4500"> LIST PANEL - 5GB - Rp 4.500</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 6GB" data-harga="5000"> LIST PANEL - 6GB - Rp 5.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 7GB" data-harga="5500"> LIST PANEL - 7GB - Rp 5.500</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 8GB" data-harga="6000"> LIST PANEL - 8GB - Rp 6.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 9GB" data-harga="6500"> LIST PANEL - 9GB - Rp 6.500</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - 10GB" data-harga="7000"> LIST PANEL - 10GB - Rp 7.000</label><br>
+  <label><input type="checkbox" class="produk" value="LIST PANEL - UNLI" data-harga="8000"> LIST PANEL - UNLI - Rp 8.000</label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 2JAM" data-harga="1000"> SEWA PUSHKONTAK - 2JAM - Rp 1.000</label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 4JAM" data-harga="2000"> SEWA PUSHKONTAK - 4JAM - Rp 2.000</label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 6JAM" data-harga="3000"> SEWA PUSHKONTAK - 6JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 8JAM" data-harga="4000"> SEWA PUSHKONTAK - 8JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 10JAM" data-harga="4500"> SEWA PUSHKONTAK - 10JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 12JAM" data-harga="5000"> SEWA PUSHKONTAK - 12JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 14JAM" data-harga="5500"> SEWA PUSHKONTAK - 14JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 16JAM" data-harga="6000"> SEWA PUSHKONTAK - 16JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 18JAM" data-harga="6500"> SEWA PUSHKONTAK - 18JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 20JAM" data-harga="7000"> SEWA PUSHKONTAK - 20JAM - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - PERMANEN" data-harga="8000"> SEWA PUSHKONTAK - PERMANEN - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 2HARI" data-harga="1000"> SEWA PUSHKONTAK - 2HARI - Rp 1.000</label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 4HARI" data-harga="2000"> SEWA PUSHKONTAK - 4HARI - Rp 2.000</label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 6HARI" data-harga="3000"> SEWA PUSHKONTAK - 6HARI - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 8HARI" data-harga="4000"> SEWA PUSHKONTAK - 8HARI - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 10HARI" data-harga="4500"> SEWA PUSHKONTAK - 10HARI - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 1MINGGU" data-harga="5000"> SEWA PUSHKONTAK - 1MINGGU - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 2MINGGU" data-harga="5500"> SEWA PUSHKONTAK - 2MINGGU - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 3MINGGU" data-harga="6000"> SEWA PUSHKONTAK - 3MINGGU - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 1BULAN" data-harga="6500"> SEWA PUSHKONTAK - 1BULAN - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - 2BULAN" data-harga="7000"> SEWA PUSHKONTAK - 2BULAN - Rp </label><br>
+  <label><input type="checkbox" class="produk" value="SEWA PUSHKONTAK - PERMANEN" data-harga="8000"> SEWA PUSHKONTAK - PERMANEN - Rp </label><br>
+    
+
+  <strong>Total: Rp <span id="total">0</span></strong><br><br>
+
+  <button type="button" onclick="checkoutWA()">Checkout via WhatsApp</button>
+</form>
+
+<!-- Konfirmasi -->
+<div class="container" id="konfirmasi">
+
     <!-- (Lanjutkan semua produk lainnya dari versi sebelumnya) -->
   </div>
 
   <!-- Konfirmasi -->
   <div class="container" id="konfirmasi">
     <h2>Konfirmasi Pembayaran</h2>
-    <p>Transfer ke rekening <span class="highlight">DANA: 085712594787</span></p>
+    
+<p>Transfer ke rekening:</p>
+<button onclick="copyDana()" style="background-color: #00ffcc; border: none; color: black; padding: 10px 16px; border-radius: 6px; font-weight: bold; cursor: pointer;">
+  Salin Nomor DANA: 085712594787
+</button>
+<br><br>
+<a href="dana://pay?phone=085712594787" 
+   style="display: inline-block; padding: 12px 20px; background-color: #007AFF; color: white; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 14px;">
+  🔗 Bayar via DANA (085712594787)
+</a>
     <p>Setelah transfer, isi form ini. Admin akan mengirim akses ke email atau nomor WhatsApp kamu dan jangan sampai email atau nomor WhatsApp Anda salah karena bisa terjadi kesalahan salah kirim jadi telitilah saat mengisi.</p>
 
 <form action="https://formsubmit.co/yanzzgg749@gmail.com" method="POST">
@@ -443,6 +612,80 @@
   <a href="https://wa.me/6283824724985" class="wa-float" target="_blank" title="Chat Admin">
     <i class="fab fa-whatsapp"></i>
   </a>
+  
+  <!-- Tombol TikTok Tengah Bawah (di atas YouTube) -->
+<a href="https://www.tiktok.com/@yanzz_hosting" target="_blank" title="TikTok"
+   style="
+     position: fixed;
+     bottom: 90px;
+     left: 50%;
+     transform: translateX(-50%);
+     background-color: #000000;
+     color: white;
+     padding: 12px 20px;
+     border-radius: 8px;
+     font-weight: bold;
+     text-decoration: none;
+     font-size: 14px;
+     z-index: 100;
+     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+     display: flex;
+     align-items: center;
+     gap: 8px;
+   ">
+  <i class="fab fa-tiktok"></i> @yanzz_hosting
+</a>
+
+<!-- Testimoni Pelanggan -->
+<div class="container" style="background-color: rgba(255,255,255,0.05); padding: 20px; margin-top: 30px; border-radius: 10px;">
+  <h3 style="color: #ffcc00;">Apa Kata Mereka?</h3>
+
+  <div class="testimoni" style="margin-top: 10px;">
+    <p>"Panelnya cepat banget! 👍"</p>
+    <small>- @user_ff</small>
+  </div>
+
+  <div class="testimoni" style="margin-top: 10px;">
+    <p>"Langsung aktif tanpa ribet, mantap bosku!"</p>
+    <small>- @anak_ml</small>
+  </div>
+
+  <div class="testimoni" style="margin-top: 10px;">
+    <p>"Pelayanan admin ramah & fast respon!"</p>
+    <small>- @wa_customer</small>
+  </div>
+  
+  <!-- Form Jual Produk dari Penjual Lain dengan Identitas -->
+<div class="container" style="margin-top: 40px;">
+  <h2 style="color: #ffcc00;">Ingin Jualan di Sini?</h2>
+  <p>Silakan isi identitas & produk kamu. Semua data akan dicek sebelum ditampilkan. Penipuan akan dilaporkan!</p>
+  
+  <form action="https://formsubmit.co/yanzzgg749@gmail.com" method="POST" enctype="multipart/form-data">
+    <!-- Proteksi Form -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Pengajuan Jual Produk Baru">
+    <input type="hidden" name="_next" value="https://yanzzhosting454.github.io/marketplace1-website/terima-kasih.html">
+
+    <!-- IDENTITAS WAJIB -->
+    <input type="text" name="Nama_Penjual" placeholder="Nama / Username Kamu" required>
+    <input type="text" name="Nomor_KTP" placeholder="Nomor KTP atau NIK (wajib)" required>
+    <input type="text" name="Nomor_WA" placeholder="Nomor WhatsApp Kamu" required>
+    <input type="email" name="Email" placeholder="Email Aktif Kamu" required>
+
+    <!-- PRODUK -->
+    <input type="text" name="Nama_Produk" placeholder="Nama Produk" required>
+    <input type="text" name="Harga" placeholder="Harga Produk (contoh: Rp 20.000)" required>
+    <textarea name="Deskripsi" placeholder="Deskripsi Produk Singkat" required></textarea>
+    <input type="url" name="Link_WhatsApp" placeholder="Link WhatsApp Pembeli (https://wa.me/...)" required>
+
+    <!-- Upload Gambar -->
+    <label for="gambar">Upload Gambar Produk:</label>
+    <input type="file" name="Gambar_Produk" accept="image/*" required>
+
+    <button type="submit">Kirim Produk ke Admin</button>
+  </form>
+</div>
+</div>
 
   <!-- Footer -->
   <footer>
@@ -471,6 +714,38 @@
    ">
   <i class="fab fa-youtube"></i> @YanzzGg-k2e
 </a>
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    const btn = document.getElementById("darkModeBtn");
+    btn.innerHTML = document.body.classList.contains("dark-mode")
+      ? "☀️ Mode Terang"
+      : "🌙 Mode Gelap";
+  }
+</script>
+
+<style>
+  .dark-mode {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+  }
+
+  .dark-mode .product {
+    background-color: rgba(255,255,255,0.05) !important;
+  }
+
+  .dark-mode header, .dark-mode footer {
+    background-color: #000 !important;
+  }
+
+  .dark-mode .highlight {
+    color: #00ffe0 !important;
+  }
+
+  .dark-mode form button {
+    background: #333 !important;
+  }
+</style>
 
 </body>
   </html>
