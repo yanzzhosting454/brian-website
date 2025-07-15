@@ -500,6 +500,15 @@ window.addEventListener('load', function () {
   </ul>
 </div>
 
+<!-- 💬 Chat Sederhana -->
+<div id="chatBox" style="margin: 30px auto; max-width: 500px; background: #ffffff10; padding: 20px; border-radius: 10px;">
+  <h3 style="color: #ffcc00;">💬 Chat Antar Pengunjung</h3>
+  <div id="chatLog" style="height: 200px; overflow-y: auto; background: #00000040; padding: 10px; border-radius: 8px; margin-bottom: 10px;"></div>
+  <input id="chatName" type="text" placeholder="Nama kamu" style="width: 100%; padding: 10px; border-radius: 6px; margin-bottom: 8px;" />
+  <input id="chatInput" type="text" placeholder="Ketik pesan..." style="width: 100%; padding: 10px; border-radius: 6px;" />
+  <button onclick="kirimChat()" style="margin-top: 8px; width: 100%; padding: 10px; border: none; background: #00ffcc; font-weight: bold; border-radius: 6px;">Kirim</button>
+</div>
+
 </div> <!-- penutup produk -->
 
 <!-- 🛒 Form Checkout -->
@@ -570,16 +579,31 @@ window.addEventListener('load', function () {
   <!-- Konfirmasi -->
   <div class="container" id="konfirmasi">
     <h2>Konfirmasi Pembayaran</h2>
+    <!-- Tombol Transfer Langsung -->
+<div style="margin-bottom: 20px;">
+  <a href="https://link.dana.id/transfer/?phone=085712594787"
+     style="display:inline-block; padding:10px 16px; background:#007AFF; color:#fff; border-radius:8px; text-decoration:none; font-weight:bold; margin-right:10px;">
+    💰 Bayar via DANA
+  </a>
+
+  <a href="https://link.gopay.id/?phone=085712594787"
+     style="display:inline-block; padding:10px 16px; background:#00b14f; color:#fff; border-radius:8px; text-decoration:none; font-weight:bold;">
+    💳 Bayar via GoPay
+  </a>
+</div>
     
-<p>Transfer ke rekening:</p>
+    <!-- ✅ QRIS + Nomor DANA -->
+<h3 style="color: #ffcc00;">🔁 Transfer Otomatis via QRIS</h3>
+<p>Scan QR di bawah ini menggunakan aplikasi e-wallet apa pun (DANA, OVO, Gopay, dll):</p>
+
+<!-- Ganti src dengan URL gambar QRIS milikmu -->
+<img src="https://img1.pixhost.to/images/7228/622243045_skyzopedia.jpg" alt="QRIS YANZZ" style="max-width: 300px; border-radius: 10px; margin-bottom: 10px;" />
+
+<p>Atau bisa juga transfer manual ke nomor DANA berikut:</p>
 <button onclick="copyDana()" style="background-color: #00ffcc; border: none; color: black; padding: 10px 16px; border-radius: 6px; font-weight: bold; cursor: pointer;">
   Salin Nomor DANA: 085712594787
 </button>
 <br><br>
-<a href="dana://pay?phone=085712594787" 
-   style="display: inline-block; padding: 12px 20px; background-color: #007AFF; color: white; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 14px;">
-  🔗 Bayar via DANA (085712594787)
-</a>
     <p>Setelah transfer, isi form ini. Admin akan mengirim akses ke email atau nomor WhatsApp kamu dan jangan sampai email atau nomor WhatsApp Anda salah karena bisa terjadi kesalahan salah kirim jadi telitilah saat mengisi.</p>
 
 <form action="https://formsubmit.co/yanzzgg749@gmail.com" method="POST">
@@ -636,6 +660,36 @@ window.addEventListener('load', function () {
   <i class="fab fa-tiktok"></i> @yanzz_hosting
 </a>
 
+<div class="container" id="pinjamQR" style="margin-top: 50px;">
+  <h2 style="color: #ffcc00;">📌 Pinjam QRIS YANZZ (Untuk Non Premium)</h2>
+  <p>Kamu belum punya QRIS pribadi? Tenang! Kamu bisa pakai QRIS milik YANZZ untuk menerima pembayaran dari pembeli kamu. Setelah itu, kirim bukti transfer agar kami teruskan ke kamu.</p>
+
+  <h3>✅ Gunakan QR Ini untuk Terima Pembayaran</h3>
+  <img src="https://img1.pixhost.to/images/7228/622243045_skyzopedia.jpg" alt="QRIS Yanzz" style="max-width: 300px; border-radius: 10px; margin-bottom: 10px;" />
+
+  <p><strong>❗Biaya Admin Rp 300</strong> akan dipotong dari total pembayaran yang masuk sebelum ditransfer ke kamu.</p>
+
+  <form action="https://formsubmit.co/yanzzgg749@gmail.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="PINJAM QR - Konfirmasi Transfer Masuk">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://yanzzhosting454.github.io/marketplace1-website/terima-kasih.html">
+
+    <input type="text" name="Nama_Pengguna" placeholder="Nama Kamu (yang pinjam QR)" required>
+    <input type="text" name="Nomor_WA" placeholder="Nomor WhatsApp Kamu" required>
+    <input type="text" name="Nama_Pembeli" placeholder="Nama pembeli kamu" required>
+    <input type="number" name="Jumlah" placeholder="Jumlah yang diterima dari pembeli (contoh: 10000)" required>
+
+    <label for="bukti_transfer_pembeli">Upload Bukti Transfer dari Pembeli:</label>
+    <input type="file" name="Bukti_Transfer" id="bukti_transfer_pembeli" accept="image/*" required>
+
+    <button type="submit" style="background-color: #ffcc00; color: black; padding: 10px 16px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+      Kirim Bukti & Konfirmasi
+    </button>
+  </form>
+
+  <p style="margin-top: 15px;"><strong>⚠️ Catatan:</strong> Setelah diverifikasi, kamu akan menerima sisa saldo <b>(total transfer - Rp 300)</b> ke rekening kamu. Admin akan hubungi kamu lewat WhatsApp.</p>
+</div>
+
 <!-- Testimoni Pelanggan -->
 <div class="container" style="background-color: rgba(255,255,255,0.05); padding: 20px; margin-top: 30px; border-radius: 10px;">
   <h3 style="color: #ffcc00;">Apa Kata Mereka?</h3>
@@ -686,6 +740,28 @@ window.addEventListener('load', function () {
   </form>
 </div>
 </div>
+
+<!-- 📱 Aplikasi Kebutuhan JB -->
+<div class="container" id="apkJB" style="margin-top: 50px;">
+  <h2 style="color: #ffcc00; text-align: center;">📱 BERIKUT APLIKASI KEBUTUHAN JB FREE</h2>
+  <p style="text-align: center;">BISA DIJUAL LAGI 🔁</p>
+
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px;">
+    <button onclick="showLink('https://www.mediafire.com/file/u91j89vpv0nklc6/YANZZ_HOSTING.apk/file')" 
+      style="padding: 12px 20px; background-color: #0984e3; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
+      📌 Download YANZZ HOSTING APK
+    </button>
+  </div>
+</div>
+
+<script>
+  function showLink(link) {
+    const buka = confirm("Ingin download aplikasi ini?");
+    if (buka) {
+      window.open(link, '_blank');
+    }
+  }
+</script>
 
   <!-- Footer -->
   <footer>
@@ -746,6 +822,76 @@ window.addEventListener('load', function () {
     background: #333 !important;
   }
 </style>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+  // ✅ CONFIG PUNYAMU SENDIRI
+  const firebaseConfig = {
+    apiKey: "AIzaSyAeZhFw1OPShD4JQEWJXXXXXXXXXXXXXXXX",
+    authDomain: "yanzz-hosting.firebaseapp.com",
+    projectId: "yanzz-hosting",
+    storageBucket: "yanzz-hosting.appspot.com",
+    messagingSenderId: "390298433239",
+    appId: "1:390298433239:web:ee48f1XXXXXXXXXXX"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  window.loginGoogle = function () {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        document.getElementById('welcomeMsg').innerHTML =
+          `Halo, <b>${user.displayName}</b><br><img src="${user.photoURL}" width="50" style="border-radius:50%;">`;
+        document.getElementById('loginBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-block';
+      })
+      .catch(error => {
+        alert("Gagal login: " + error.message);
+      });
+  };
+
+  window.logoutGoogle = function () {
+    signOut(auth).then(() => {
+      document.getElementById('welcomeMsg').innerHTML = '';
+      document.getElementById('loginBtn').style.display = 'inline-block';
+      document.getElementById('logoutBtn').style.display = 'none';
+    });
+  };
+
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      document.getElementById('welcomeMsg').innerHTML =
+        `Halo, <b>${user.displayName}</b><br><img src="${user.photoURL}" width="50" style="border-radius:50%;">`;
+      document.getElementById('loginBtn').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'inline-block';
+    }
+  });
+</script>
+
+<script>
+function kirimChat() {
+  const nama = document.getElementById("chatName").value.trim();
+  const pesan = document.getElementById("chatInput").value.trim();
+  const log = document.getElementById("chatLog");
+
+  if (!nama || !pesan) {
+    alert("Isi nama dan pesan dulu!");
+    return;
+  }
+
+  const baris = document.createElement("div");
+  baris.innerHTML = `<b style="color: #00ffcc;">${nama}:</b> ${pesan}`;
+  log.appendChild(baris);
+
+  document.getElementById("chatInput").value = "";
+  log.scrollTop = log.scrollHeight;
+}
+</script>
 
 </body>
 </html>
